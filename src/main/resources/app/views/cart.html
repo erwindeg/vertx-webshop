@@ -1,0 +1,10 @@
+
+
+<ul ng-controller="CartCtrl" class="list-group">
+	<li ng-repeat="item in cart.cartItems" class="list-group-item"><a
+		href ng-click="removeItem($index)"><img src="app/images/add.png"
+			height="50" width="50"></a> {{item.product.name}} <b>aantal:</b>
+		{{item.size}} <b>prijs:</b> &#8364 {{item.product.price | number: 2}}
+		<b>totaal:</b> &#8364 {{item.size * item.product.price | number: 2}}</li>
+		<li class="nav nav-pills pull-right"><button ng-click="checkout()">Checkout</button></li>
+</ul>

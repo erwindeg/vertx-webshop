@@ -1,0 +1,5 @@
+
+
+<ul ng-controller="MainCtrl" class="list-group">
+	<li ng-repeat="product in products" class="list-group-item"><a href ng-click="addProduct(product)"><img src="app/images/add.png" height="50" width="50"></a> {{product.name}}  &#8364  {{product.price | number: 2}}</li>
+</ul>
