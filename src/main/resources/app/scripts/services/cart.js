@@ -20,7 +20,6 @@ angular.module('resourcesApp').factory('ShoppingCart', function($resource) {
 				cartItem.size = 1;
 				this.cartItems.push(cartItem);	
 			}
-			
 		},
 		
 		removeItem : function(index) { 

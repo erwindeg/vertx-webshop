@@ -3,8 +3,8 @@ package nl.edegier.webshop.service;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
-import io.vertx.ext.apex.RoutingContext;
-import io.vertx.ext.mongo.MongoService;
+import io.vertx.ext.web.RoutingContext;
+import io.vertx.ext.mongo.MongoClient;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -23,11 +23,23 @@ public class ProductRestService {
 		products = Arrays.asList("Whiskas kattenvoer", "Sheba brokjes","Felix zakjes", "Royal Canin brokjes").stream().map(n -> new Product(n,new BigDecimal(new Random().nextDouble()*3))).collect(Collectors.toList()); 
 	}
 
-	private MongoService mongoService;
+	private MongoClient mongoClient;
 	private static final String PRODUCT = "product";
 
-	public ProductRestService(MongoService mongoService) {
-		this.mongoService = mongoService;
+	public ProductRestService(MongoClient mongoClient) {
+		this.mongoClient = mongoClient;	
+		this.mongoClient.save(PRODUCT, new JsonObject().put("name","erwin"), res -> {
+
+		      if (res.succeeded()) {
+
+		        String id = res.result();
+		        System.out.println("Saved book with id " + id);
+
+		      } else {
+		        res.cause().printStackTrace();
+		      }
+
+		    });
 	}
 
 	public void getProducts(RoutingContext rc) {
@@ -53,7 +65,7 @@ public class ProductRestService {
 	}
 
 	private void findProducts(HttpServerResponse response, JsonObject query) {
-		this.mongoService.find(PRODUCT, query, res -> {
+		this.mongoClient.find(PRODUCT, query, res -> {
 			response.end(new JsonArray(res.result()).toString());
 		});
 	}

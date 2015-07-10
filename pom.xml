@@ -7,7 +7,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<description> An archetype for building Vertx3 applications with MongoDB and AngularJS</description>
 	<properties>
-		<vertx.version>3.0.0-SNAPSHOT</vertx.version>
+		<vertx.version>3.0.0</vertx.version>
 	</properties>
 
 	<dependencies>
@@ -19,17 +19,12 @@
 		</dependency>
 		<dependency>
 			<groupId>io.vertx</groupId>
-			<artifactId>vertx-sockjs</artifactId>
-			<version>${vertx.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.vertx</groupId>
 			<artifactId>vertx-hazelcast</artifactId>
 			<version>${vertx.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.vertx</groupId>
-			<artifactId>vertx-mongo-service</artifactId>
+			<artifactId>vertx-mongo-client</artifactId>
 			<version>${vertx.version}</version>
 		</dependency>
 		<dependency>
@@ -40,8 +35,8 @@
 		</dependency>
 		<dependency>
 			<groupId>io.vertx</groupId>
-			<artifactId>vertx-apex</artifactId>
-			<version>3.0.0-SNAPSHOT</version>
+			<artifactId>vertx-web</artifactId>
+			<version>${vertx.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -51,16 +46,16 @@
 		</dependency>
 	</dependencies>
 
-	<repositories>
-		<repository>
-			<id>snapshots-repo</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-			<releases>
-			</releases>
-			<snapshots>
-			</snapshots>
-		</repository>
-	</repositories>
+<!-- 	<repositories> -->
+<!-- 		<repository> -->
+<!-- 			<id>snapshots-repo</id> -->
+<!-- 			<url>https://oss.sonatype.org/content/repositories/snapshots</url> -->
+<!-- 			<releases> -->
+<!-- 			</releases> -->
+<!-- 			<snapshots> -->
+<!-- 			</snapshots> -->
+<!-- 		</repository> -->
+<!-- 	</repositories> -->
 
 	<build>
 
@@ -99,7 +94,7 @@
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<manifestEntries>
 										<Main-Class>io.vertx.core.Starter</Main-Class>
-										<Main-Verticle>nl.edegier.webshop.MainVerticle</Main-Verticle>
+										<Main-Verticle>nl.edegier.webshop.verticle.MainVerticle</Main-Verticle>
 									</manifestEntries>
 								</transformer>
 								<transformer
