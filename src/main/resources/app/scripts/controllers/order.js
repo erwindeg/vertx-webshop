@@ -26,5 +26,5 @@ angular.module('resourcesApp')
 		 $resource('/api/order').save($scope.order);
 		 
 	 }
-	 $scope.orders = $resource('/api/order').query();
+	
   });

@@ -32,6 +32,7 @@ public class WebVerticle extends AbstractVerticle {
 		Router router = Router.router(vertx);
 		router.route().handler(BodyHandler.create());
 		router.get("/").handler(StaticHandler.create().setWebRoot(PATH).setIndexPage(WELCOME_PAGE));
+		router.get("/favicon.icon").handler(StaticHandler.create().setWebRoot(PATH));
 		router.get("/" + PATH + "/*").handler(StaticHandler.create().setWebRoot(PATH));
 		router.get("/api/hello-world").handler(context -> context.response().end("{\"content\" : \"Hello world!\" }"));
 		router.get("/api/product").handler(productRestService::getProducts);
