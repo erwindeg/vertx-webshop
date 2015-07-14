@@ -24,10 +24,14 @@ angular.module('resourcesApp')
 	 $scope.removeItem = function(index){
 		 ShoppingCart.removeItem(index);
 	 }
+	 
 	 $scope.checkout = function(){
+		 var order = {};
+		 order.cartItems = ShoppingCart.cartItems;
+		 order.date = new Date();
 		 if(ShoppingCart.size() > 0){
-			  $resource('/api/cart').save(ShoppingCart, function(order){
-				 $location.path('/checkout/'+order.id);	 
+			  $resource('/api/order').save(order, function(order){
+				 $location.path('/checkout/'+order.orderid);	 
 			 });
 			 
 		 }

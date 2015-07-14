@@ -11,8 +11,7 @@ angular.module('resourcesApp')
   .controller('MainCtrl', function ($scope,$resource, ShoppingCart) {
 	 $scope.products= $resource('/api/product').query();
 	 $scope.cart = ShoppingCart;
-    $scope.addProduct= function(product){
-//    	$scope.cart.products.push(product);
+     $scope.addProduct= function(product){
     	ShoppingCart.addProduct(product);
-    }
+     }
   });
